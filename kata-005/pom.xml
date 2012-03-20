@@ -9,15 +9,13 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.nexse.swat.kata</groupId>
     <artifactId>kata-005</artifactId>
-    <name>Kata 003: The Project Euler Number One Kata</name>
+    <name>Kata 005: The Anagram Kata</name>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
-
 </project>
