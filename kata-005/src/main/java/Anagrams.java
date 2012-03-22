@@ -1,6 +1,8 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,18 +19,16 @@ public class Anagrams {
     public Set<String> findAnagrams(String word) {
         Set<String> resultSet = new TreeSet<String>();
         try {
-            Properties prop = new Properties();
-            
-            prop.load(this.getClass().getResourceAsStream("common-passwords.txt"));
-
+            InputStream in = ClassLoader.getSystemResourceAsStream("common-passwords.txt");
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
             HashMap<Character,Integer> wordAnalysysMap = getAnalysysMap(word);
 
-            for (Object key : prop.keySet()) {
-                String chiaveAttuale = (String) key;
-                if (chiaveAttuale.length() == word.length() ) {
-                    HashMap<Character,Integer> currentAnalysysMap = getAnalysysMap(chiaveAttuale);
-                    if(!word.equals(chiaveAttuale) && hashEqualsWord(wordAnalysysMap,currentAnalysysMap)) {
-                        resultSet.add(chiaveAttuale);
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                if (strLine.length() == word.length() ) {
+                    HashMap<Character,Integer> currentAnalysysMap = getAnalysysMap(strLine);
+                    if(!word.equals(strLine) && hashEqualsWord(wordAnalysysMap,currentAnalysysMap)) {
+                        resultSet.add(strLine);
                     }
                 }
             }
@@ -69,4 +69,5 @@ public class Anagrams {
         }
         return true;
     }
+
 }
